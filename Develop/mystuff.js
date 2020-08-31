@@ -27,6 +27,7 @@ for (i = 0; i < timeSlots.length; i++) {
         .attr("class", "col-10 description")
 
     var textArea = $("<textarea>")
+        .attr("id", timeSlots[i])
         .attr("class", "col-12")
         .text(localStorage.getItem("task-desc-" + timeSlots[i]))
 
@@ -49,9 +50,16 @@ for (i = 0; i < timeSlots.length; i++) {
 }
 //create event listener using 'this'
 $(".row").on('click', function () {
-    var clickHour = this.childNodes[0].innerHTML;
-    var clickDetail = this.childNodes[1].childNodes[0].
-    console.log(clickHour)
-    console.log(clickDetail)
-    localStorage.setItem('task-desc-' + clickHour, clickDetail)
-})
+    console.log(this.id)
+        if(this.classes === "saveBtn") {
+            console.log(this)
+            var clickHour = this.childNodes[0].innerHTML;
+            console.log(clickHour)
+        }
+        
+        //var clickDetail = this.childNodes[1].childNodes[0].innerHTML;
+        //console.log(clickHour)
+        //console.log(clickDetail)
+        //localStorage.setItem('task-desc-' + clickHour, clickDetail)
+    }
+)
