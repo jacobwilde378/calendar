@@ -3,13 +3,6 @@ $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"))
 var hour = 12
 var timeSlots = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 
-localStorage.setItem('task-desc-10',"AAA")
-localStorage.setItem('task-desc-12',"bbb")
-localStorage.setItem('task-desc-14',"ccc")
-
-
-
-
 for (i = 0; i < timeSlots.length; i++) {
     if (timeSlots[i] === hour) {
         classes = "row  time-block present"
@@ -55,6 +48,10 @@ for (i = 0; i < timeSlots.length; i++) {
 
 }
 //create event listener using 'this'
-$("#master").on('click', function() {
-    console.log(this)
+$(".row").on('click', function () {
+    var clickHour = this.childNodes[0].innerHTML;
+    var clickDetail = this.childNodes[1].childNodes[0].
+    console.log(clickHour)
+    console.log(clickDetail)
+    localStorage.setItem('task-desc-' + clickHour, clickDetail)
 })
