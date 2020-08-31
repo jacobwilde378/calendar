@@ -1,6 +1,6 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY"))
-//var hour = moment().format("H")
-var hour = 12
+var hour = moment().format("H")
+//var hour = 12
 var timeSlots = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 
 for (i = 0; i < timeSlots.length; i++) {
@@ -20,7 +20,7 @@ for (i = 0; i < timeSlots.length; i++) {
 
     var timeCol = $("<div>")
         .attr("class", "col-1 hour")
-        .text(timeSlots[i])
+        .text(timeSlots[i] + ":00")
 
 
     var textCol = $("<div>")
@@ -36,7 +36,8 @@ for (i = 0; i < timeSlots.length; i++) {
 
     var subButton = $("<button>")
         .attr("class", "col-1 saveBtn")
-        .attr("id", "subButton-" + timeSlots[i])
+        .attr("data-hour", timeSlots[i])
+        .text("Save")
 
     createRow.append(timeCol)
     createRow.append(textCol)
@@ -49,17 +50,19 @@ for (i = 0; i < timeSlots.length; i++) {
 
 }
 //create event listener using 'this'
-$(".row").on('click', function () {
-    console.log(this.id)
-        if(this.classes === "saveBtn") {
-            console.log(this)
-            var clickHour = this.childNodes[0].innerHTML;
-            console.log(clickHour)
-        }
+$(".saveBtn").on('click', function (event) {
+    var clickHour = $(event.target).data('hour')
+    console.log(clickHour)
+    var clickDetail = $("#" + clickHour).val()
+    localStorage.setItem('task-desc-' + clickHour, clickDetail)
+
+    //var clickHour = this.childNodes[0].innerHTML;
+    //console.log(clickHour)
+    }   
+
         
         //var clickDetail = this.childNodes[1].childNodes[0].innerHTML;
         //console.log(clickHour)
         //console.log(clickDetail)
         //localStorage.setItem('task-desc-' + clickHour, clickDetail)
-    }
 )
